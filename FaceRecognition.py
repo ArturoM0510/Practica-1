@@ -48,6 +48,7 @@ siamese_model = tf.keras.models.load_model('C:/Users/artur/OneDrive/Documentos/P
                                    custom_objects={'L1Dist':L1Dist, 'BinaryCrossentropy':tf.losses.BinaryCrossentropy})
 
 
+#Capture the image and add it to the input path
 faceClassif = cv2.CascadeClassifier('C:/Users/artur/OneDrive/Documentos/Practica1/Redes neuronales/Rostros.xml')
 cap = cv2.VideoCapture(0)
 while True:
@@ -73,6 +74,7 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
+#function: pass the image through the model
 def verify(model, detection_threshold, verification_threshold, input1, input2 ):
     # Build results array
     results = []
@@ -86,6 +88,7 @@ def verify(model, detection_threshold, verification_threshold, input1, input2 ):
     return result
 
 
+#function: go folder by folder sending each image to the verify function to compare them 
 path = 'C:/Users/artur/OneDrive/Documentos/Practica1/Redes neuronales/application_data/input_image'
 caption = os.path.join(path,'input_image.jpg')
 def verify3(input_image):
